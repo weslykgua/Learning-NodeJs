@@ -8,13 +8,13 @@ const processRequest = (req, res) => {
 
   if (req.url === '/') {
     res.end('<h1>Mi página</h1>')
-  } else if (req.url === '/imagen-super-bonita.png') {
-    fs.readFile('./placa.png', (err, data) => {
+  } else if (req.url === '/image') {
+    fs.readFile('./G3UmBGrWUAA9utr.jpeg', (err, data) => {
       if (err) {
         res.statusCode = 500
         res.end('<h1>500 Internal Server Error</h1>')
       } else {
-        res.setHeader('Content-Type', 'image/png')
+        res.setHeader('Content-Type', 'image/jpeg')
         res.end(data)
       }
     })
