@@ -25,8 +25,8 @@ const processRequest = (req, res) => {
                     req.on('data', chunk => {
                         body += chunk.toString()
                     })
-                    
-                    req.on('end',() => {
+
+                    req.on('end', () => {
                         const data = JSON.parse(body)
                         //llamar a una base de datos para guardar el pokemon
                         res.writeHead(201, { 'Content-Type': 'application/json; charset=utf-8' })
@@ -34,13 +34,13 @@ const processRequest = (req, res) => {
                         data.timestamp = Date.now()
                         res.end(JSON.stringify(data))
                     })
-                    return
+                    break
                 }
+                default:
+                    res.statusCode = 404
+                    res.setHeader('Content-Type', 'text/html; charset=utf-8')
+                    return res.end('<h1>404 Not Found</h1>')
             }
-        default:
-            res.statusCode = 404
-            res.setHeader('Content-Type', 'text/html; charset=utf-8')
-            return res.end('<h1>404 Not Found</h1>')
     }
 }
 
